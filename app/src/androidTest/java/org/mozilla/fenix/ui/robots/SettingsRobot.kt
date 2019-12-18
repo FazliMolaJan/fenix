@@ -52,7 +52,7 @@ class SettingsRobot {
     fun verifyEnhancedTrackingProtectionValue(state: String) =
         assertEnhancedTrackingProtectionValue(state)
 
-    fun verifyAddPrivateBrowsingShortcutButton() = assertPrivateBrowsingButton()
+    fun verifyPrivateBrowsingButton() = assertPrivateBrowsingButton()
     fun verifySitePermissionsButton() = assertSitePermissionsButton()
     fun verifyDeleteBrowsingDataButton() = assertDeleteBrowsingDataButton()
     fun verifyDeleteBrowsingDataOnQuitButton() = assertDeleteBrowsingDataOnQuitButton()
@@ -153,6 +153,15 @@ class SettingsRobot {
 
             SettingsTurnOnSyncRobot().interact()
             return SettingsTurnOnSyncRobot.Transition()
+        }
+
+        fun openPrivateBrowsingSubMenu(interact: SettingsSubMenuPrivateBrowsingRobot.() -> Unit): SettingsSubMenuPrivateBrowsingRobot.Transition {
+
+            fun defaultBrowserButton() = onView(ViewMatchers.withText("Private browsing"))
+            defaultBrowserButton().click()
+
+            SettingsSubMenuPrivateBrowsingRobot().interact()
+            return SettingsSubMenuPrivateBrowsingRobot.Transition()
         }
     }
 }
